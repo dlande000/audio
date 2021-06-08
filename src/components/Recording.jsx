@@ -15,6 +15,8 @@ class Recorder extends Component {
     };
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
+    this.submitAudio = this.submitAudio.bind(this);
+    this.clearRecording = this.clearRecording.bind(this);
   }
 
   start() {
@@ -39,6 +41,15 @@ class Recorder extends Component {
       }).catch((e) => console.log(e));
   }
 
+  submitAudio(e) {
+    e.preventDefault();
+    console.log('send some data!');
+  }
+
+  clearRecording() {
+    this.setState({ blobURL: '' });
+  }
+
   componentDidMount() {
     navigator.getUserMedia({ audio: true },
       () => {
@@ -58,13 +69,22 @@ class Recorder extends Component {
     
     return (
       <>
-        <button onClick={onClick}>
-          { buttonText }
-        </button>
-        {this.state.blobURL && (
-          <Audio
-            audioUrl={this.state.blobURL}
-          />
+        {this.state.blobURL ? (
+          <div>
+            <Audio
+              audioUrl={this.state.blobURL}
+            />
+            <button onClick={this.submitAudio}>
+              Submit audio
+            </button>
+            <button onClick={this.clearRecording}>
+              Record new audio
+            </button>
+          </div>
+        ) : (
+          <button onClick={onClick}>
+            { buttonText }
+          </button>
         )}
       </>
     )

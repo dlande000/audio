@@ -10,9 +10,12 @@ class Audio extends Component {
 
   render() {
     return (
-      <>
-        <audio src={this.state.audioUrl} controls="controls" />
-      </>
+      <div>
+        <audio
+          src={this.state.audioUrl}
+          controls="controls"
+        />
+      </div>
     )
   }
 }

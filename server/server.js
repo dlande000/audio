@@ -22,8 +22,7 @@ app.get(
   '/api/messages',
   audioController.getAudios,
   (req, res) => {
-    console.log(req.body);
-    res.send('got it');
+    res.send(res.locals.audios);
   }
 );
 

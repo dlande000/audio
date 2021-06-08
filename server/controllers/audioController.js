@@ -14,17 +14,20 @@ const s3 = new aws.S3();
 const audioController = {};
 
 audioController.getAudios = (req, res, next) => {
-  // do some work
-
+  Audio.find({})
+    .then(audios => {
+      res.locals.audios = audios;
+      next();
+    });
 };
 
 audioController.postAudio = (req, res, next) => {
-  const { audioUrl } = req.body;
-  
+  const { audio } = req.body;
+  console.log(req);
   const params = {
     Bucket: process.env.BUCKET_NAME,
-    Key: Date.now().toString(),
-    Body: audioUrl,
+    Key: Date.now().toString() + '.mp3',
+    Body: audio,
     ACL: 'public-read',
   };
 

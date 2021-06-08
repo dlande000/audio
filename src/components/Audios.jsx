@@ -11,16 +11,23 @@ class Audios extends Component {
   }
   componentDidMount() {
     // GET messages
-    console.log('Audios mounted');
+    fetch('/api/messages')
+      .then(res => res.json())
+      .then(messages => {
+        console.log(messages);
+        this.setState({ messages });
+      });
   }
 
   render() {
-    const audios = this.state.messages.map((audio, i) => (
+    const audios = this.state.messages.map((audio, i) => {
+      debugger
+      return (
       <Audio
         key={`audio${i}`}
-        audioUrl={audio.url}
+        audioUrl={audio.url + '.mp3'}
       />
-    ));
+    )});
 
     return (
       <>

@@ -42,6 +42,7 @@ class Recorder extends Component {
   }
 
   submitAudio(e) {
+    // POST message
     e.preventDefault();
     console.log('send some data!');
   }

@@ -2,10 +2,11 @@
   "name": "audio-project",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "webpack serve --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "concurrently \"NODE_ENV=development webpack serve --open\" \"nodemon ./server/server.js\"",    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

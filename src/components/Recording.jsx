@@ -44,7 +44,7 @@ class Recorder extends Component {
   submitAudio(e) {
     e.preventDefault();
 
-    fetch('/api/david', {
+    fetch('/api/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

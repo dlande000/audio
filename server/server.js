@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const audioController = require('./controllers/audioController');
 
 // const apiRouter = require('./routes/api');
 
@@ -17,10 +18,25 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json());
 
-app.post('/api/david', (req, res) => {
-  console.log(req.body);
-  res.send('got it');
-});
+app.get(
+  '/api/messages',
+  audioController.getAudios,
+  (req, res) => {
+    console.log(req.body);
+    res.send('got it');
+  }
+);
+
+app.post(
+  '/api/messages',
+  audioController.postAudio,
+  (req, res) => {
+    console.log(res.locals);
+    res.send(res.locals.audio);
+  }
+);
+
+// app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);

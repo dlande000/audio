@@ -15,8 +15,11 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-app.get('/api/david', (req, res) => {
-  res.send('this works');
+app.use(express.json());
+
+app.post('/api/david', (req, res) => {
+  console.log(req.body);
+  res.send('got it');
 });
 
 app.listen(PORT, () => {

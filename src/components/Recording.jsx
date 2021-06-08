@@ -42,9 +42,15 @@ class Recorder extends Component {
   }
 
   submitAudio(e) {
-    // POST message
     e.preventDefault();
-    console.log('send some data!');
+
+    fetch('/api/david', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ audioUrl: this.state.blobURL })
+    }).then(resp => console.log(resp)).catch(err => console.log('you fucked up'));
   }
 
   clearRecording() {

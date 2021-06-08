@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 
+import Audio from './Audio.jsx';
+
 const Mp3Recorder = new MicRecorder({ bitRate: 126 });
 
 class Recorder extends Component {
@@ -65,7 +67,11 @@ class Recorder extends Component {
         >
           Stop
         </button>
-        <audio src={this.state.blobURL} controls="controls" />
+        {this.state.blobURL && (
+          <Audio
+            audioUrl={this.state.blobURL}
+          />
+        )}
       </>
     )
   }

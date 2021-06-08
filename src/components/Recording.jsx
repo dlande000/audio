@@ -53,19 +53,13 @@ class Recorder extends Component {
   }
 
   render() {
+    const buttonText = this.state.isRecording ? 'Stop' : 'Record';
+    const onClick = this.state.isRecording ? this.stop : this.start;
+    
     return (
       <>
-        <button
-          onClick={this.start}
-          disabled={this.state.isRecording}
-        >
-          Record
-        </button>
-        <button
-          onClick={this.stop}
-          disabled={!this.state.isRecording}
-        >
-          Stop
+        <button onClick={onClick}>
+          { buttonText }
         </button>
         {this.state.blobURL && (
           <Audio

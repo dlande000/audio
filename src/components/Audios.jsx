@@ -1,40 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Audio from './Audio';
 
-class Audios extends Component {
-  constructor() {
-    super();
-    this.state = {
-      messages: [],
-    };
-  }
-  componentDidMount() {
-    // GET messages
+const Audios = () => {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
     fetch('/api/messages')
       .then(res => res.json())
-      .then(messages => {
-        console.log(messages);
-        this.setState({ messages });
-      });
-  }
+      .then(data => setMessages(data));
+  }, []);
 
-  render() {
-    const audios = this.state.messages.map((audio, i) => {
-      // debugger
-      return (
-      <Audio
-        key={`audio${i}`}
-        audioUrl={audio.url}
-      />
-    )});
+  const audios = messages.map(({ url }, i) => (
+    <Audio
+      key={`audio${i}`}
+      audioUrl={url}
+    />
+  ));
 
-    return (
-      <>
-        { audios }
-      </>
-    )
-  }
-}
+  return (
+    <>
+      {audios}
+    </>
+  )
+};
 
 export default Audios;

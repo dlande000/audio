@@ -1,4 +1,3 @@
-const db = require('../models/audioModel');
 const aws = require('aws-sdk');
 
 const Audio = require('../models/audioModel');
@@ -16,12 +15,12 @@ const audioController = {};
 
 audioController.getAudios = (req, res, next) => {
   Audio.find({})
+    // .limit(2)
     .then(audios => {
       res.locals.audios = audios;
       next();
     });
 };
-
 
 audioController.postAudio = (req, res, next) => {
   console.log('Posting');

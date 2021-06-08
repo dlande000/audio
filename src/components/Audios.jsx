@@ -14,7 +14,7 @@ const Audios = () => {
   const audios = messages.map(({ url }, i) => (
     <Audio
       key={`audio${i}`}
-      audioUrl={url}
+      url={url}
     />
   ));
 

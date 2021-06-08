@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 
-class Audio extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      audioUrl: this.props.audioUrl,
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <audio
-          src={this.state.audioUrl}
-          controls="controls"
-        />
-      </div>
-    )
-  }
-}
+const Audio = ({ url }) => (
+  <div>
+    <audio
+      src={url}
+      controls="controls"
+    />
+  </div>
+);
 
 export default Audio;

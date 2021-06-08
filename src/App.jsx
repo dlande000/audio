@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Recording from './components/Recording.jsx';
+import Recording from './components/Recording';
 
 const App = () => (
   <>

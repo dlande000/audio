@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Audio from './Audio.jsx';
+import Audio from './Audio';
 
 class Audios extends Component {
   constructor() {

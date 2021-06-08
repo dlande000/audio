@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const multer = require('multer');
+
 require('dotenv').config();
 const audioController = require('./controllers/audioController');
 
@@ -16,7 +18,7 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-app.use(express.json());
+// app.use(express.json());
 
 app.get(
   '/api/messages',
@@ -26,11 +28,15 @@ app.get(
   }
 );
 
+const upload = multer();
+
 app.post(
   '/api/messages',
+  upload.single('audio'),
   audioController.postAudio,
   (req, res) => {
-    console.log(res.locals);
+    // res.sendStatus(200);
+    // console.log(res.locals);
     res.send(res.locals.audio);
   }
 );

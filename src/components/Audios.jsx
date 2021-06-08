@@ -21,11 +21,11 @@ class Audios extends Component {
 
   render() {
     const audios = this.state.messages.map((audio, i) => {
-      debugger
+      // debugger
       return (
       <Audio
         key={`audio${i}`}
-        audioUrl={audio.url + '.mp3'}
+        audioUrl={audio.url}
       />
     )});
 

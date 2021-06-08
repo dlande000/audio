@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
+import axios from 'axios';
 
 import Audio from './Audio';
+import Audios from './Audios';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 126 });
 
@@ -12,6 +14,7 @@ class Recorder extends Component {
       isRecording: false,
       blobURL: '',
       isBlocked: false,
+      file: undefined,
     };
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
@@ -36,21 +39,35 @@ class Recorder extends Component {
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
-        const blobURL = URL.createObjectURL(blob);
-        this.setState({ blobURL, isRecording: false });
+        // debugger
+        const file = new File(buffer, 'me-at-thevoice.mp3', {
+          type: blob.type,
+          lastModified: Date.now()
+        });
+        // debugger
+        const blobURL = URL.createObjectURL(file);
+        this.setState({ blobURL, file, isRecording: false });
       }).catch((e) => console.log(e));
   }
 
   submitAudio(e) {
     e.preventDefault();
+    // debugger;
+    const data = new FormData();
+    data.append("audio", this.state.file);
 
-    fetch('/api/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ audioUrl: this.state.blobURL })
-    }).then(resp => console.log(resp)).catch(err => console.log('you fucked up'));
+    axios.post('/api/messages', data)
+    // axios.post('https://httpbin.org/anything', data)
+      .then(resp => console.log(resp))
+      .catch(err => console.log('fuuukc'));
+
+    // fetch('/api/messages', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: data,
+    // }).then(resp => console.log(resp)).catch(err => console.log('you fucked up'));
   }
 
   clearRecording() {
@@ -93,6 +110,7 @@ class Recorder extends Component {
             { buttonText }
           </button>
         )}
+        <Audios />
       </>
     )
   }

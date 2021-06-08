@@ -1,5 +1,6 @@
 const db = require('../models/audioModel');
 const aws = require('aws-sdk');
+
 const Audio = require('../models/audioModel');
 require('dotenv').config();
 
@@ -21,13 +22,16 @@ audioController.getAudios = (req, res, next) => {
     });
 };
 
+
 audioController.postAudio = (req, res, next) => {
-  const { audio } = req.body;
-  console.log(req);
+  console.log('Posting');
+  console.log(req.file);
+  // console.log(req.body);
+  // // const { audio } = req.body;
   const params = {
     Bucket: process.env.BUCKET_NAME,
-    Key: Date.now().toString() + '.mp3',
-    Body: audio,
+    Key: Date.now().toString(),
+    Body: req.file.buffer,
     ACL: 'public-read',
   };
 

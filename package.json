@@ -21,6 +21,7 @@
   "homepage": "https://github.com/dlande000/audio#readme",
   "dependencies": {
     "aws-sdk": "^2.924.0",
+    "axios": "^0.21.1",
     "cross-blob": "^2.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

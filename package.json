@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"NODE_ENV=development webpack serve --open\" \"nodemon ./server/server.js\"",    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"NODE_ENV=development webpack serve --open\" \"nodemon ./server/server.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,10 @@
   },
   "homepage": "https://github.com/dlande000/audio#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mic-recorder-to-mp3": "^2.2.2",
+    "mongoose": "^5.12.13",
     "node-fetch": "^2.6.1",
     "ns": "^1.0.2",
     "react": "^17.0.2",

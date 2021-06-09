@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const multer = require('multer');
 
 require('dotenv').config();
-const audioController = require('./controllers/audioController');
 
-// const apiRouter = require('./routes/api');
+const messagesRouter = require('./routes/messages');
 
 const app = express();
 const PORT = 3000;
@@ -24,22 +22,7 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-// app.use(express.json());
-
-app.get(
-  '/messages',
-  audioController.getAudios,
-  (req, res) => res.send(res.locals.audios)
-);
-
-const upload = multer();
-
-app.post(
-  '/messages',
-  upload.single('audio'),
-  audioController.postAudio,
-  (req, res) => res.send(res.locals.audio)
-);
+app.use('/messages', messagesRouter);
 
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 

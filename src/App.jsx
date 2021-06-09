@@ -10,10 +10,10 @@ const App = () => (
       Send strangers short audio messages, and listen to what the world says back.
     </div>
     <div id="description">
-      Audiyo was build by David Anderson using React Hooks, Redux, Node, Express, and AWS S3.
+      Audiyo was built by David Anderson using React Hooks, Redux, Node, Express, MongoDB, and AWS S3.
     </div>
     <div id="plea">
-      (Please do not actually use Audiyo, as I do not want to pay the AWS charges.)
+      (Please do not actually use Audiyo. I do not want to pay the AWS charges.)
     </div>
     <Recorder />
     <Audios />

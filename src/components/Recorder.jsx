@@ -92,7 +92,6 @@ const Recorder = () => {
           { buttonText }
         </button>
       )}
-      <Audios />
     </>
   )
 };

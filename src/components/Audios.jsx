@@ -67,7 +67,7 @@ const Audios = ({
     <>
       {audios}
       {(isLoading && hasMoreMessages) && (
-        <div>
+        <div id="loading">
           Loading messages ...
         </div>
       )}

@@ -217,3 +217,11 @@ audio {
 		box-shadow: 0 0 0 0 rgba(196, 29, 29, 0);
 	}
 }
+
+audio {
+  transition: height 0.3s;
+}
+
+audio:hover {
+  height: 58px;
+}

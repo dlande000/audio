@@ -21,6 +21,7 @@ const Audios = ({
   lastTimestamp,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasMoreMessages, setHasMoreMessages] = useState(false);
   const observer = useRef();
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const Audios = ({
       }).then(({ data }) => {
         getAudios(data);
         setIsLoading(false);
+        setHasMoreMessages(Boolean(data.length));
       });
     }
   }, [isLoading]);
@@ -60,7 +62,7 @@ const Audios = ({
   return (
     <>
       {audios}
-      {isLoading && (
+      {(isLoading && hasMoreMessages) && (
         <div>
           Loading messages ...
         </div>

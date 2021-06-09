@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import audiosReducer from './audiosReducer';
+import audioReducers from './audioReducers';
 
 const reducers = combineReducers({
-  audios: audiosReducer,
+  audios: audioReducers,
 });
 
 export default reducers;

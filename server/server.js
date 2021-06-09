@@ -35,8 +35,6 @@ app.post(
   upload.single('audio'),
   audioController.postAudio,
   (req, res) => {
-    // res.sendStatus(200);
-    // console.log(res.locals);
     res.send(res.locals.audio);
   }
 );

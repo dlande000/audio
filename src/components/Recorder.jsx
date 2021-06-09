@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import MicRecorder from 'mic-recorder-to-mp3';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import MicRecorder from 'mic-recorder-to-mp3';
 
 import Audio from './Audio';
 import Audios from './Audios';
 
+import { addAudioActionCreator } from '../actions/actions';
+
 const Mp3Recorder = new MicRecorder({ bitRate: 96 });
 
-const Recorder = () => {
+const mapDispatchToProps = dispatch => ({
+  addAudio: audio => dispatch(addAudioActionCreator(audio)),
+});
+
+const Recorder = ({ addAudio }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
   const [file, setFile] = useState(null);
@@ -64,13 +71,22 @@ const Recorder = () => {
     const form = new FormData();
     form.append("audio", file);
 
-    axios.post('/api/messages', data)
-      .then(res => res.json())
-      .then(data => console.log(data))
+    axios
+      .post('/api/messages', form)
+      .then(({ data: audio }) => {
+        debugger
+        addAudio(audio)
+      })
       .catch(err => console.log(err));
+    
+    setFile(null);
+    setBlobUrl('');
   };
 
-  const clearRecording = () => setBlobUrl('');
+  const clearRecording = () => {
+    setBlobUrl('');
+    setFile(null);
+  };
 
   const buttonText = isRecording ? 'Stop' : 'Record';
   const onClick = isRecording ? stop : start;
@@ -96,4 +112,4 @@ const Recorder = () => {
   )
 };
 
-export default Recorder;
+export default connect(null, mapDispatchToProps)(Recorder);

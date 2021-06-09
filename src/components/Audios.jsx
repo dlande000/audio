@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import Audio from './Audio';
 
-const Audios = () => {
-  const [messages, setMessages] = useState([]);
+import { getAudiosActionCreator } from '../actions/actions';
 
+const mapStateToProps = state => ({
+  messages: state.audios.audios,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getAudios: audios => dispatch(getAudiosActionCreator(audios)),
+});
+
+const Audios = ({ messages, getAudios }) => {
   useEffect(() => {
     fetch('/api/messages')
       .then(res => res.json())
-      .then(data => setMessages(data));
+      .then(data => getAudios(data));
   }, []);
 
   const audios = messages.map(({ url }, i) => (
@@ -25,4 +34,4 @@ const Audios = () => {
   )
 };
 
-export default Audios;
+export default connect(mapStateToProps, mapDispatchToProps)(Audios);

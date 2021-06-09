@@ -4,12 +4,13 @@ const initialState = {
   audios: [],
 };
 
-const audioReducer = (state = initialState, ({ type, payload })) => {
+const audioReducers = (state = initialState, { type, payload }) => {
   let audios;
 
   switch (type) {
     case ADD_AUDIO:
       audios = [payload].concat(state.audios);
+      debugger
       return { audios };
     case ADD_AUDIOS: 
       audios = payload;
@@ -20,4 +21,4 @@ const audioReducer = (state = initialState, ({ type, payload })) => {
   }
 };
 
-export default marketsReducer;
+export default audioReducers;

@@ -15,6 +15,18 @@ module.exports = env => ({
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+        ]
+      }
     ],
   },
   plugins: [
@@ -36,9 +48,9 @@ module.exports = env => ({
         target: 'http://localhost:3000',
         pathRewrite: { '^/api': '' },
       },
-      '/assets/**': {
-        target: 'http://localhost:3000/',
-      },
+      // '/assets/**': {
+      //   target: 'http://localhost:3000/',
+      // },
     },
   },
 });

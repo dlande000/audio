@@ -50,12 +50,16 @@ const Audios = ({
     if (node) observer.current.observe(node);
   }, [isLoading]);
 
-  const audios = messages.map(({ url }, i) => (
+  const audios = messages.map(({ url, createdAt }, i) => (
     <div
       key={`audio${i}`}
       ref={i === messages.length - 1 ? lastAudioElementRef : null}
+      className="audiosContainer"
     >
-      <Audio url={url}/>
+      <Audio
+        url={url}
+        timestamp={createdAt}
+      />
     </div>
   ));
 

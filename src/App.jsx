@@ -9,15 +9,12 @@ const App = () => (
     <div>
       Send strangers short audio messages, and listen what the world has to say.
     </div>
-    <div>
+    <div id="description">
       Audiyo was build by David Anderson using React Hooks, Redux, Node, Express, and AWS S3.
     </div>
-    <div>
-      Please do not actually use Audiyo, as I do not want to pay the AWS charges.
+    <div id="plea">
+      (Please do not actually use Audiyo, as I do not want to pay the AWS charges.)
     </div>
-    <nav>
-      <a href="google.com">Github</a>
-    </nav>
     <Recorder />
     <Audios />
   </>

@@ -1,4 +1,4 @@
-import { ADD_AUDIO, ADD_AUDIOS } from '../constants/actionTypes';
+import {  ADD_AUDIO, ADD_AUDIOS, CHANGE_LIKE } from '../constants/actionTypes';
 
 const initialState = {
   audios: [],
@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const audioReducers = (state = initialState, { type, payload }) => {
-  let audios, lastTimestamp;
+  let audios, lastTimestamp, audio;
 
   switch (type) {
     case ADD_AUDIO:
@@ -25,9 +25,18 @@ const audioReducers = (state = initialState, { type, payload }) => {
         audios,
         lastTimestamp,
       };
-    default: {
+    case CHANGE_LIKE:
+      debugger
+      const { index, changeBy } = payload;
+      audios = Array.from(state.audios);
+      audios[index].likes += changeBy;
+      debugger
+      return {
+        ...state,
+        audios,
+      };
+    default: 
       return state;
-    }
   }
 };
 

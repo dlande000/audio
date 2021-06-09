@@ -88,6 +88,7 @@ body {
   margin: 0 auto;
   padding: 24px;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 #description, #plea, .timestamp, #end {

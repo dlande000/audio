@@ -18,4 +18,10 @@ router.post(
   (req, res) => res.send(res.locals.audio)
 );
 
+router.patch(
+  '/',
+  audioController.updateLikes,
+  (req, res) => res.send(res.locals)
+);
+
 module.exports = router;

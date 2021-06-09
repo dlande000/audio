@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path'); //TODO: use for serving static files
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 
 const messagesRouter = require('./routes/messages');
 
@@ -21,6 +22,8 @@ mongoose.connect(
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
+
+app.use(bodyParser.json());
 
 app.use('/messages', messagesRouter);
 

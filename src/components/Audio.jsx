@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Audio = ({ url, timestamp }) => {
+import Likes from './Likes';
+
+const Audio = ({
+  url,
+  timestamp,
+  likes,
+  index,
+  changeLikes,
+}) => {
   const date = new Date(timestamp);
   const postedAt = !timestamp ? '' : date.getDate() +
           "/" + (date.getMonth() + 1) +
@@ -11,6 +19,14 @@ const Audio = ({ url, timestamp }) => {
 
   return (
     <div>
+      {(likes || likes === 0) && (
+        <Likes
+          likes={likes}
+          index={index}
+          url={url}
+          changeLikes={changeLikes}
+        />
+      )}
       <div className="timestamp">
         {postedAt}
       </div>

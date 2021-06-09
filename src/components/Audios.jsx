@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Audio from './Audio';
 
-import { getAudiosActionCreator } from '../actions/actions';
+import { getAudiosActionCreator, changeLikeActionCreator } from '../actions/actions';
 
 const mapStateToProps = state => ({
   messages: state.audios.audios,
@@ -13,12 +13,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getAudios: audios => dispatch(getAudiosActionCreator(audios)),
+  changeLikes: (index, changeBy) => dispatch(changeLikeActionCreator(index, changeBy)),
 });
 
 const Audios = ({
   messages,
   getAudios,
   lastTimestamp,
+  changeLikes,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasMoreMessages, setHasMoreMessages] = useState(false);
@@ -51,7 +53,7 @@ const Audios = ({
     if (node) observer.current.observe(node);
   }, [isLoading]);
 
-  const audios = messages.map(({ url, createdAt }, i) => (
+  const audios = messages.map(({ url, createdAt, likes }, i) => (
     <div
       key={`audio${i}`}
       ref={i === messages.length - 1 ? lastAudioElementRef : null}
@@ -60,6 +62,9 @@ const Audios = ({
       <Audio
         url={url}
         timestamp={createdAt}
+        index={i}
+        likes={likes}
+        changeLikes={changeLikes}
       />
     </div>
   ));

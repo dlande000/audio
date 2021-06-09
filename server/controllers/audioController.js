@@ -46,13 +46,39 @@ audioController.postAudio = async (req, res, next) => {
     };
 
     const { Location: url } = await s3.upload(params).promise();
-    const audio = await Audio.create({ url });
+    const audio = await Audio.create({ url, likes: 0 });
 
     res.locals.audio = audio;
     next();
   } catch (e) {
     next({
       log: 'Express error handler caught in audioController.postAudio',
+      status: 400,
+      message: {
+        err: `An error occurred: ${e}`,
+      },
+    });
+  }
+};
+
+audioController.updateLikes = async (req, res, next) => {
+  try {
+    const { url, changeBy } = req.body;
+
+    // const audio = await Audio.findOneAndUpdate(
+    //   { url },
+    //   { likes: this.likes + parseInt(changeBy) }
+    // );
+    const audio = await Audio.findOne({ url });
+    audio.likes += parseInt(changeBy);
+    await audio.save();
+    res.locals.likes = audio.likes;
+    console.log(audio.likes);
+    console.log(res.locals.likes);
+    next();
+  } catch (e) {
+    next({
+      log: 'Express error handler caught in audioController.updateLikes',
       status: 400,
       message: {
         err: `An error occurred: ${e}`,

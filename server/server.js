@@ -27,7 +27,7 @@ mongoose.connection.once('open', () => {
 // app.use(express.json());
 
 app.get(
-  '/api/messages',
+  '/messages',
   audioController.getAudios,
   (req, res) => res.send(res.locals.audios)
 );
@@ -35,7 +35,7 @@ app.get(
 const upload = multer();
 
 app.post(
-  '/api/messages',
+  '/messages',
   upload.single('audio'),
   audioController.postAudio,
   (req, res) => res.send(res.locals.audio)

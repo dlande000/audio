@@ -76,7 +76,6 @@ const Recorder = ({ addAudio }) => {
     axios
       .post('/api/messages', form)
       .then(({ data: audio }) => {
-        debugger
         addAudio(audio);
         setFile(null);
         setBlobUrl('');

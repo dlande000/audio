@@ -46,9 +46,9 @@ module.exports = env => ({
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/api/**': {
-        target: 'http://localhost:3000/',
-        // secure: false,
+      '/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api': '' },
       },
       '/assets/**': {
         target: 'http://localhost:3000/',

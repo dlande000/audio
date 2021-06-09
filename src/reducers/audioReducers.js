@@ -20,7 +20,7 @@ const audioReducers = (state = initialState, { type, payload }) => {
       audios = Array.from(state.audios);
       audios = audios.concat(payload);
       lastTimestamp = audios[audios.length - 1].createdAt;
-      debugger
+
       return {
         audios,
         lastTimestamp,

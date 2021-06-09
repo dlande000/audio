@@ -18,7 +18,7 @@ audioController.getAudios = (req, res, next) => {
 
   Audio.find({ 'createdAt': { "$lt": lastTimestamp }})
     .sort({ 'createdAt': -1 })
-    .limit(15)
+    .limit(10)
     .then(audios => {
       res.locals.audios = audios;
       next();

@@ -90,33 +90,48 @@ const Recorder = ({ addAudio }) => {
 
   const buttonText = isRecording ? 'Stop' : 'Record';
   const onClick = isRecording ? stop : start;
-
+  // const audioContainerId = isRecording ? 'audioContainerRecording' : 'audioContainer';
+  debugger
   return (
     <>
       {blobUrl ? (
         <div>
           <Audio url={blobUrl}/>
+          <div id="buttonContainer">
+            <button
+              className="button"
+              id="submit"
+              onClick={submitAudio}
+              disabled={isSendingAudio}
+            >
+              Submit audio
+            </button>
+            <button
+              className="button"
+              id="redo"
+              onClick={clearRecording}
+              disabled={isSendingAudio}
+            >
+              Record new audio
+            </button>
+          </div>
+          </div>
+      ) : (
+        <div id="recordingButtonContainer">
           <button
-            onClick={submitAudio}
-            disabled={isSendingAudio}
-          >
-            Submit audio
-          </button>
-          <button
-            onClick={clearRecording}
-            disabled={isSendingAudio}
-          >
-            Record new audio
+            className="button"
+            id={buttonText.toLowerCase()}
+            onClick={onClick}
+            >
+            { buttonText }
           </button>
         </div>
-      ) : (
-        <button onClick={onClick}>
-          { buttonText }
-        </button>
       )}
       {isSendingAudio && (
-        <div>
-          Uploading your message, please wait ...
+        <div id="uploadingContainer">
+          <div>
+            Uploading your message, please wait ...
+          </div>
         </div>
       )}
     </>

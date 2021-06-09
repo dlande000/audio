@@ -2,7 +2,7 @@ import React from 'react';
 
 const Audio = ({ url, timestamp }) => {
   const date = new Date(timestamp);
-  const postedAt = date.getDate() +
+  const postedAt = !timestamp ? '' : date.getDate() +
           "/" + (date.getMonth() + 1) +
           "/" + date.getFullYear() +
           " " + date.getHours() +

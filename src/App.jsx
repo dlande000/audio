@@ -5,9 +5,9 @@ import Audios from './components/Audios';
 
 const App = () => (
   <>
-    <h1>audiyo</h1>
+    <h1>audiyo. &#127897; &#128308; &#128075;</h1>
     <div>
-      Send strangers short audio messages, and listen what the world has to say.
+      Send strangers short audio messages, and listen to what the world says back.
     </div>
     <div id="description">
       Audiyo was build by David Anderson using React Hooks, Redux, Node, Express, and AWS S3.

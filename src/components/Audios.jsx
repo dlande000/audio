@@ -31,7 +31,8 @@ const Audios = ({
       }).then(({ data }) => {
         getAudios(data);
         setIsLoading(false);
-        setHasMoreMessages(Boolean(data.length));
+
+        if (!data.length) setHasMoreMessages(false);
       });
     }
   }, [isLoading]);
@@ -65,12 +66,17 @@ const Audios = ({
 
   return (
     <>
+    <div id="audios">
       {audios}
+    </div>
       {(isLoading && hasMoreMessages) && (
         <div id="loading">
           Loading messages ...
         </div>
       )}
+      <div id="end">
+        That's all, folks!
+      </div>
     </>
   )
 };

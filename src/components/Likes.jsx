@@ -13,23 +13,36 @@ const Likes = ({
     const changeBy = upOrDown === 'up' ? 1 : -1;
 
     axios.patch('/api/messages', { changeBy, url })
-      .then(() => changeLikes(index, changeBy));
+      .then(() => changeLikes(index, changeBy))
+      .catch(err => console.log(err));
   };
 
+  let likesId = 'zero';
+
+  if (likes) {
+    if (likes > 0) {
+      likesId = 'positive';
+    } else if (likes < 0) {
+      likesId = 'negative';
+    }
+  }
+
   return (
-    <div>
-      {likes}
+    <div className="likeButtonContainer">
+      <span id={likesId}>
+        {likes}
+      </span>
       <button
         id="up"
         onClick={handleClick}
       >
-        Up
+        &#128077;
       </button>
       <button
         id="down"
         onClick={handleClick}
       >
-        Down
+        &#128078;
       </button>
     </div>
   )

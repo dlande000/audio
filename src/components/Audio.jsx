@@ -19,15 +19,15 @@ const Audio = ({
 
   return (
     <div>
-      {(likes || likes === 0) && (
-        <Likes
-          likes={likes}
-          index={index}
-          url={url}
-          changeLikes={changeLikes}
-        />
-      )}
       <div className="timestamp">
+        {(likes || likes === 0) ? (
+          <Likes
+            likes={likes}
+            index={index}
+            url={url}
+            changeLikes={changeLikes}
+          />
+        ) : (<div/>)}
         {postedAt}
       </div>
       <audio src={url} controls/>

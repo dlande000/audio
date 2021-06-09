@@ -72,9 +72,6 @@ audioController.updateLikes = async (req, res, next) => {
     const audio = await Audio.findOne({ url });
     audio.likes += parseInt(changeBy);
     await audio.save();
-    res.locals.likes = audio.likes;
-    console.log(audio.likes);
-    console.log(res.locals.likes);
     next();
   } catch (e) {
     next({

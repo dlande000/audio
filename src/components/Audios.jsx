@@ -42,10 +42,7 @@ const Audios = ({
     }
 
     observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        setIsLoading(true);
-        console.log('i see u')
-      }
+      if (entries[0].isIntersecting) setIsLoading(true);
     });
 
     if (node) observer.current.observe(node);
@@ -62,8 +59,11 @@ const Audios = ({
 
   return (
     <>
-      {audios.length ? audios : (
-        "Loading ..."
+      {audios}
+      {isLoading && (
+        <div>
+          Loading messages ...
+        </div>
       )}
     </>
   )

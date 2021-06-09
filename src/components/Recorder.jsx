@@ -4,7 +4,6 @@ import axios from 'axios';
 import MicRecorder from 'mic-recorder-to-mp3';
 
 import Audio from './Audio';
-import Audios from './Audios';
 
 import { addAudioActionCreator } from '../actions/actions';
 
@@ -56,7 +55,7 @@ const Recorder = ({ addAudio }) => {
           'audio-message.mp3',
           {
             type: blob.type,
-            lastModified: Date.now()
+            lastModified: Date.now(),
           }
         );
 
@@ -97,10 +96,16 @@ const Recorder = ({ addAudio }) => {
       {blobUrl ? (
         <div>
           <Audio url={blobUrl}/>
-          <button onClick={submitAudio}>
+          <button
+            onClick={submitAudio}
+            disabled={isSendingAudio}
+          >
             Submit audio
           </button>
-          <button onClick={clearRecording}>
+          <button
+            onClick={clearRecording}
+            disabled={isSendingAudio}
+          >
             Record new audio
           </button>
         </div>
@@ -109,7 +114,11 @@ const Recorder = ({ addAudio }) => {
           { buttonText }
         </button>
       )}
-      {isSendingAudio && ("Sending audio!")}
+      {isSendingAudio && (
+        <div>
+          Uploading your message, please wait ...
+        </div>
+      )}
     </>
   )
 };

@@ -1,11 +1,11 @@
 const express = require('express');
-const path = require('path');
+const path = require('path'); //TODO: use for serving static files
 const mongoose = require('mongoose');
-
-require('dotenv').config();
+const dotenv = require('dotenv');
 
 const messagesRouter = require('./routes/messages');
 
+dotenv.config();
 const app = express();
 const PORT = 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}...`);
+  console.log(`Server listening on port: ${ PORT }...`);
 });
 
 module.exports = app;

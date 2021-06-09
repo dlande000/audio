@@ -1,6 +1,9 @@
 const aws = require('aws-sdk');
+const dotenv = require('dotenv');
+
 const Audio = require('../models/audioModel');
 
+dotenv.config();
 aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
   accessKeyId: process.env.ACCESS_KEY_ID,

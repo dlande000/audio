@@ -29,7 +29,9 @@ const Audios = ({ messages, getAudios }) => {
 
   return (
     <>
-      {audios}
+      {audios.length ? audios : (
+        "Loading ..."
+      )}
     </>
   )
 };

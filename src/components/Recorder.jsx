@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
 const Recorder = ({ addAudio }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
+  const [isSendingAudio, setIsSendingAudio] = useState(false);
   const [file, setFile] = useState(null);
   const [blobUrl, setBlobUrl] = useState('');
 
@@ -67,6 +68,7 @@ const Recorder = ({ addAudio }) => {
 
   const submitAudio = e => {
     e.preventDefault();
+    setIsSendingAudio(true);
 
     const form = new FormData();
     form.append("audio", file);
@@ -75,12 +77,12 @@ const Recorder = ({ addAudio }) => {
       .post('/api/messages', form)
       .then(({ data: audio }) => {
         debugger
-        addAudio(audio)
+        addAudio(audio);
+        setFile(null);
+        setBlobUrl('');
+        setIsSendingAudio(false);
       })
       .catch(err => console.log(err));
-    
-    setFile(null);
-    setBlobUrl('');
   };
 
   const clearRecording = () => {
@@ -108,6 +110,7 @@ const Recorder = ({ addAudio }) => {
           { buttonText }
         </button>
       )}
+      {isSendingAudio && ("Sending audio!")}
     </>
   )
 };

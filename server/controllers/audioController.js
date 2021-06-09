@@ -14,8 +14,9 @@ const s3 = new aws.S3();
 const audioController = {};
 
 audioController.getAudios = (req, res, next) => {
-  Audio.find({})
-    // .limit(2)
+  Audio.find()
+    .sort({ 'createdAt': -1 })
+    .limit(10)
     .then(audios => {
       res.locals.audios = audios;
       next();
@@ -23,10 +24,6 @@ audioController.getAudios = (req, res, next) => {
 };
 
 audioController.postAudio = (req, res, next) => {
-  console.log('Posting');
-  console.log(req.file);
-  // console.log(req.body);
-  // // const { audio } = req.body;
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: Date.now().toString(),

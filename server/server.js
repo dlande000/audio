@@ -12,7 +12,13 @@ const app = express();
 const PORT = 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(
+  MONGO_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
@@ -23,9 +29,7 @@ mongoose.connection.once('open', () => {
 app.get(
   '/api/messages',
   audioController.getAudios,
-  (req, res) => {
-    res.send(res.locals.audios);
-  }
+  (req, res) => res.send(res.locals.audios)
 );
 
 const upload = multer();
@@ -34,9 +38,7 @@ app.post(
   '/api/messages',
   upload.single('audio'),
   audioController.postAudio,
-  (req, res) => {
-    res.send(res.locals.audio);
-  }
+  (req, res) => res.send(res.locals.audio)
 );
 
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

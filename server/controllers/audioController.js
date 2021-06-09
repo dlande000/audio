@@ -14,9 +14,11 @@ const s3 = new aws.S3();
 const audioController = {};
 
 audioController.getAudios = (req, res, next) => {
-  Audio.find()
+  const lastTimestamp = req.query.lastTimestamp ? req.query.lastTimestamp : Date.now();
+
+  Audio.find({ 'createdAt': { "$lt": lastTimestamp }})
     .sort({ 'createdAt': -1 })
-    .limit(10)
+    .limit(15)
     .then(audios => {
       res.locals.audios = audios;
       next();

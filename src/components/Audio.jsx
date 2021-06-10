@@ -10,12 +10,14 @@ const Audio = ({
   changeLikes,
 }) => {
   const date = new Date(timestamp);
-  const postedAt = !timestamp ? '' : (date.getMonth() + 1) +
-          "/" + date.getDate() +
-          "/" + date.getFullYear() +
-          " " + date.getHours() +
-          ":" + date.getMinutes() +
-          ":" + date.getSeconds();
+  const postedAt = !timestamp ?
+    '' :
+    (date.getMonth() + 1) +
+      "/" + date.getDate() +
+      "/" + date.getFullYear() +
+      " " + date.getHours() +
+      ":" + date.getMinutes() +
+      ":" + date.getSeconds();
 
   return (
     <div>

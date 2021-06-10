@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-module.exports = env => ({
-  mode: env.NODE_ENV,
+module.exports = {
+  mode: process.env.NODE_ENV,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -15,20 +15,19 @@ module.exports = env => ({
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: [
+            '@babel/preset-env',
+            '@babel/preset-react'
+          ],
         },
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-        ]
+          'style-loader',
+          'css-loader'
+        ],
       }
     ],
   },
@@ -39,7 +38,10 @@ module.exports = env => ({
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [
+      '.js',
+      '.jsx'
+    ],
   },
   devServer: {
     host: 'localhost',
@@ -56,4 +58,4 @@ module.exports = env => ({
       // },
     },
   },
-});
+};

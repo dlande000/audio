@@ -43,6 +43,8 @@ module.exports = {
       '.jsx'
     ],
   },
+  //! Problem could be here.
+  // How does public path work?
   devServer: {
     host: 'localhost',
     port: 8080,

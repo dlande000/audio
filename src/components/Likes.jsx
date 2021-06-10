@@ -12,7 +12,7 @@ const Likes = ({
     const upOrDown = e.target.id;
     const changeBy = upOrDown === 'up' ? 1 : -1;
 
-    axios.patch('/api/messages', { changeBy, url })
+    axios.patch('/messages', { changeBy, url })
       .then(() => changeLikes(index, changeBy))
       .catch(err => console.log(err));
   };

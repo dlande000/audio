@@ -73,7 +73,7 @@ const Recorder = ({ addAudio }) => {
     form.append("audio", file);
 
     axios
-      .post('/api/messages', form)
+      .post('/messages', form)
       .then(({ data: audio }) => {
         addAudio(audio);
         setFile(null);

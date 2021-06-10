@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, '../dist')));
 }
 
-app.use('/api/messages', messagesRouter);
+app.use('/messages', messagesRouter);
 
 app.get('*', (req, res) => (
   res.sendStatus(404)

@@ -49,7 +49,7 @@ module.exports = {
     hot: true,
     publicPath: '/',
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/messages': 'http://localhost:3000',
       '/**': 'http://localhost:3000',
     },
   },

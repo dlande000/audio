@@ -28,7 +28,7 @@ const Audios = ({
 
   useEffect(() => {
     if (isLoading) {
-      axios.get('/api/messages', {
+      axios.get('/messages', {
         params: { lastTimestamp },
       }).then(({ data }) => {
         getAudios(data);

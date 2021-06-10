@@ -169,6 +169,7 @@ audio {
   border: none;
   transition: 0.3s;
   padding: 12px;
+  margin-bottom: 36px;
 }
 
 .button:hover {

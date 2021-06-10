@@ -64,14 +64,11 @@ audioController.postAudio = async (req, res, next) => {
 audioController.updateLikes = async (req, res, next) => {
   try {
     const { url, changeBy } = req.body;
-
-    // const audio = await Audio.findOneAndUpdate(
-    //   { url },
-    //   { likes: this.likes + parseInt(changeBy) }
-    // );
     const audio = await Audio.findOne({ url });
+
     audio.likes += parseInt(changeBy);
     await audio.save();
+    
     next();
   } catch (e) {
     next({

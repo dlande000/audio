@@ -43,21 +43,14 @@ module.exports = {
       '.jsx'
     ],
   },
-  //! Problem could be here.
-  // How does public path work?
   devServer: {
     host: 'localhost',
     port: 8080,
     hot: true,
     publicPath: '/',
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: { '^/api': '' },
-      },
-      // '/assets/**': {
-      //   target: 'http://localhost:3000/',
-      // },
+      '/api': 'http://localhost:3000',
+      '/**': 'http://localhost:3000',
     },
   },
 };

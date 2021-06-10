@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path'); //TODO: use for serving static files
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
 const messagesRouter = require('./routes/messages');
 
@@ -23,19 +23,14 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(favicon(path.join(__dirname, '../src/assets/images/favicon.png')));
 
-//! FIGURE OUT THE WAY TO PASS UP ASSETS
-// if (process.env.NODE_ENV === 'production') {
-//   // statically serve everything in the build folder on the route '/build'
-//   app.use('/dist', express.static(path.join(__dirname, '../dist')));
-//   // serve index.html on the route '/'
-//   app.get('/', (req, res) => {
-//     return res.status(200).sendFile(path.join(__dirname, '../index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname, '../dist')));
+}
 
-app.use('/messages', messagesRouter);
+app.use('/api/messages', messagesRouter);
 
 app.get('*', (req, res) => (
   res.sendStatus(404)

@@ -90,8 +90,7 @@ const Recorder = ({ addAudio }) => {
 
   const buttonText = isRecording ? 'Stop' : 'Record';
   const onClick = isRecording ? stop : start;
-  // const audioContainerId = isRecording ? 'audioContainerRecording' : 'audioContainer';
-  debugger
+
   return (
     <>
       {blobUrl ? (

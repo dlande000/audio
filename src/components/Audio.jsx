@@ -9,15 +9,35 @@ const Audio = ({
   index,
   changeLikes,
 }) => {
-  const date = new Date(timestamp);
-  const postedAt = !timestamp ?
-    '' :
-    (date.getMonth() + 1) +
-      "/" + date.getDate() +
-      "/" + date.getFullYear() +
-      " " + date.getHours() +
-      ":" + date.getMinutes() +
-      ":" + date.getSeconds();
+  let postedAt = '';
+
+  if (timestamp) {
+    const date = new Date(timestamp);
+    const [
+      month,
+      day,
+      year,
+      hours,
+      minutes,
+      seconds
+    ] = [
+      date.getMonth() + 1,
+      date.getDate(),
+      date.getFullYear(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds()
+    ];
+
+    const formattedHours = !hours ? '00' : hours;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+  
+    postedAt = `
+      ${ month }/${ day }/${ year } 
+      ${ formattedHours }:${ formattedMinutes }:${ formattedSeconds }
+    `;
+  }
 
   return (
     <div>

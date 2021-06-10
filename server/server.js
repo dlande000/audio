@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path'); //TODO: use for serving static files
+const path = require('path');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const favicon = require('serve-favicon');
